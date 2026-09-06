@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Oliver Dunn | Software Developer</title>
+
+  <meta
+    name="description"
+    content="Portfolio of Oliver Dunn, Junior Software Developer specialising in full-stack development, APIs, machine learning and creative technology."
+  />
+
+  <style>
+    /* ================================
+       RESET & VARIABLES
+    ================================= */
+
+    :root {
+      --bg: #0b0d12;
+      --bg-secondary: #12151d;
+      --card: #171b25;
+      --card-hover: #1d2230;
+
+      --text: #f5f7fa;
+      --text-muted: #a7afbd;
+
+      --accent: #7c5cff;
+      --accent-light: #9b84ff;
+      --border: #2a3040;
+
+      --max-width: 1150px;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ================================
+       GLOBAL
+    ================================= */
+
+    .container {
+      width: min(90%, var(--max-width));
+      margin: auto;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 50px;
+    }
+
+    .section-heading span {
+      display: block;
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .section-heading p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 12px 20px;
+      border-radius: 8px;
+
+      background: var(--accent);
+      color: white;
+
+      font-weight: 600;
+
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(124, 92, 255, 0.08);
+    }
+
+    /* ================================
+       NAVIGATION
+    ================================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(11, 13, 18, 0.88);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    nav {
+      height: 70px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--accent-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-btn {
+      display: none;
+
+      background: none;
+      border: none;
+
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ================================
+       HERO
+    ================================= */
+
+    .hero {
+      min-height: calc(100vh - 70px);
+
+      display: flex;
+      align-items: center;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      width: 500px;
+      height: 500px;
+
+      background: var(--accent);
+      opacity: 0.08;
+
+      filter: blur(120px);
+
+      top: -100px;
+      right: -100px;
+
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+
+      background: #4ade80;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.95;
+
+      letter-spacing: -0.06em;
+
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--accent-light);
+    }
+
+    .hero p {
+      max-width: 650px;
+
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      margin-top: 50px;
+    }
+
+    .hero-tech span {
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+
+      padding: 7px 12px;
+      border-radius: 6px;
+
+      font-size: 0.85rem;
+    }
+
+    /* ================================
+       ABOUT
+    ================================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      padding: 25px;
+      border-radius: var(--radius);
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      color: var(--accent-light);
+    }
+
+    .stat-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ================================
+       SKILLS
+    ================================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      padding: 28px;
+      border-radius: var(--radius);
+
+      transition: 0.25s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      background: var(--card-hover);
+      border-color: var(--accent);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 15px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tags span {
+      background: rgba(124, 92, 255, 0.1);
+      color: var(--accent-light);
+
+      padding: 5px 9px;
+      border-radius: 5px;
+
+      font-size: 0.8rem;
+    }
+
+    /* ================================
+       EXPERIENCE
+    ================================= */
+
+    .timeline {
+      position: relative;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+
+      padding: 35px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-date {
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-content h4 {
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .timeline-content ul {
+      list-style: disc;
+      padding-left: 20px;
+      color: var(--text-muted);
+    }
+
+    .timeline-content li {
+      margin-bottom: 8px;
+    }
+
+    /* ================================
+       PROJECTS
+    ================================= */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+      overflow: hidden;
+
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+
+    .project-image {
+      height: 180px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 3rem;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(124, 92, 255, 0.25),
+          transparent 50%
+        ),
+        var(--bg-secondary);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-content {
+      padding: 28px;
+    }
+
+    .project-content h3 {
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+
+      margin-bottom: 20px;
+    }
+
+    .project-tech span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+
+      border: 1px solid var(--border);
+
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .project-links a {
+      color: var(--accent-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ================================
+       ACHIEVEMENTS
+    ================================= */
+
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .achievement {
+      padding: 25px;
+
+      border-left: 3px solid var(--accent);
+      background: var(--card);
+    }
+
+    .achievement h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .achievement p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ================================
+       CONTACT
+    ================================= */
+
+    .contact {
+      text-align: center;
+      background: var(--bg-secondary);
+    }
+
+    .contact-content {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .contact h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ================================
+       FOOTER
+    ================================= */
+
+    footer {
+      padding: 30px 0;
+      text-align: center;
+
+      color: var(--text-muted);
+      font-size: 0.85rem;
+
+      border-top: 1px solid var(--border);
+    }
+
+    /* ================================
+       RESPONSIVE
+    ================================= */
+
+    @media (max-width: 850px) {
+
+      .skills-grid,
+      .achievement-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+
+      section {
+        padding: 70px 0;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+
+        position: absolute;
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        background: var(--bg-secondary);
+        padding: 25px 5%;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 85vh;
+      }
+
+      .hero h1 {
+        font-size: 3.4rem;
+      }
+
+      .projects-grid,
+      .skills-grid,
+      .achievement-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ================================
+       NAVIGATION
+  ================================= -->
+
+  <header>
+    <nav class="container">
+
+      <a href="#home" class="logo">
+        Oliver<span>Dunn</span>.
+      </a>
+
+      <button class="menu-btn" id="menuBtn">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+
+  <!-- ================================
+       HERO
+  ================================= -->
+
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="hero-tag">
+            <span class="status-dot"></span>
+            Junior Software Developer
+          </div>
+
+          <h1>
+            Building software.<br />
+            Exploring <span>ideas.</span>
+          </h1>
+
+          <p>
+            I'm Oliver Dunn, a Junior Software Developer working across
+            web development, backend systems, APIs, databases and software
+            security. I also build projects exploring machine learning,
+            creative coding and interactive technology.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a
+              href="#projects"
+              class="btn"
+            >
+              View My Work →
+            </a>
+
+            <a
+              href="https://github.com/OliverDunnDev"
+              target="_blank"
+              class="btn btn-outline"
+            >
+              GitHub
+            </a>
+
+          </div>
+
+          <div class="hero-tech">
+            <span>JavaScript</span>
+            <span>C#</span>
+            <span>Python</span>
+            <span>React</span>
+            <span>SQL</span>
+            <span>FastAPI</span>
+            <span>Uniface</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         ABOUT
+    ================================= -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>01 — About</span>
+          <h2>A developer with a creative side.</h2>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-text">
+
+            <p>
+              I'm a First Class Computer Science graduate and Junior Software
+              Developer currently working on enterprise software within the
+              higher education sector.
+            </p>
+
+            <p>
+              My day-to-day work involves developing web features, backend
+              functionality, APIs, database systems, testing, version control
+              and security remediation.
+            </p>
+
+            <p>
+              Outside of professional development, I'm interested in the
+              more experimental side of technology — machine learning,
+              creative coding, XR, generative systems and interactive
+              experiences.
+            </p>
+
+            <p>
+              I enjoy solving difficult technical problems, learning new
+              technologies and turning ideas into working software.
+            </p>
+
+          </div>
+
+
+          <div class="stats">
+
+            <div class="stat-card">
+              <h3>1st</h3>
+              <p>Class Computer Science Degree</p>
+            </div>
+
+            <div class="stat-card">
+              <h3>78%</h3>
+              <p>Overall University Average</p>
+            </div>
+
+            <div class="stat-card">
+              <h3>86</h3>
+              <p>Security Items Resolved in Two Weeks</p>
+            </div>
+
+            <div class="stat-card">
+              <h3>2025</h3>
+              <p>Published Quantum ML Research</p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         SKILLS
+    ================================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>02 — Skills</span>
+          <h2>Technologies I work with.</h2>
+        </div>
+
+
+        <div class="skills-grid">
+
+          <article class="skill-card">
+
+            <h3>Languages</h3>
+
+            <div class="skill-tags">
+              <span>JavaScript</span>
+              <span>C#</span>
+              <span>Python</span>
+              <span>SQL</span>
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>Java</span>
+              <span>PHP</span>
+            </div>
+
+          </article>
+
+
+          <article class="skill-card">
+
+            <h3>Development</h3>
+
+            <div class="skill-tags">
+              <span>React</span>
+              <span>FastAPI</span>
+              <span>.NET</span>
+              <span>Uniface</span>
+              <span>REST APIs</span>
+              <span>AJAX</span>
+              <span>JSON</span>
+            </div>
+
+          </article>
+
+
+          <article class="skill-card">
+
+            <h3>Data & Tools</h3>
+
+            <div class="skill-tags">
+              <span>MySQL</span>
+              <span>PostgreSQL</span>
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>Azure DevOps</span>
+              <span>Postman</span>
+              <span>HeidiSQL</span>
+            </div>
+
+          </article>
+
+
+          <article class="skill-card">
+
+            <h3>Machine Learning</h3>
+
+            <div class="skill-tags">
+              <span>scikit-learn</span>
+              <span>TensorFlow</span>
+              <span>NumPy</span>
+              <span>pandas</span>
+              <span>Qiskit</span>
+              <span>Neural Networks</span>
+              <span>GANs</span>
+            </div>
+
+          </article>
+
+
+          <article class="skill-card">
+
+            <h3>Creative Technology</h3>
+
+            <div class="skill-tags">
+              <span>Unity</span>
+              <span>Meta Quest</span>
+              <span>p5.js</span>
+              <span>Processing</span>
+              <span>Raspberry Pi</span>
+              <span>Creative Coding</span>
+            </div>
+
+          </article>
+
+
+          <article class="skill-card">
+
+            <h3>Engineering Practices</h3>
+
+            <div class="skill-tags">
+              <span>Unit Testing</span>
+              <span>Code Review</span>
+              <span>Agile Scrum</span>
+              <span>Security</span>
+              <span>Version Control</span>
+              <span>Debugging</span>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         EXPERIENCE
+    ================================= -->
+
+    <section id="experience">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>03 — Experience</span>
+          <h2>Professional experience.</h2>
+        </div>
+
+
+        <div class="timeline">
+
+          <article class="timeline-item">
+
+            <div class="timeline-date">
+              Oct 2025 — Present
+            </div>
+
+            <div class="timeline-content">
+
+              <h3>Junior Developer</h3>
+              <h4>Tribal Group</h4>
+
+              <ul>
+                <li>
+                  Develop production web application features for the SITS
+                  higher education platform.
+                </li>
+
+                <li>
+                  Work across JavaScript frontend development and Uniface
+                  backend functionality.
+                </li>
+
+                <li>
+                  Integrate systems using JSON, AJAX and SQL.
+                </li>
+
+                <li>
+                  Use Git and Azure DevOps for version control, branching,
+                  backporting and release workflows.
+                </li>
+
+                <li>
+                  Conduct testing, code reviews and security assessments.
+                </li>
+
+                <li>
+                  Independently sized and resolved 86 of 123 security items
+                  within a two-week period.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </article>
+
+
+          <article class="timeline-item">
+
+            <div class="timeline-date">
+              Sep 2025 — Oct 2025
+            </div>
+
+            <div class="timeline-content">
+
+              <h3>Graduate Programmer</h3>
+              <h4>ProQual AB</h4>
+
+              <ul>
+                <li>
+                  Developed and deployed an internal IT ticketing system.
+                </li>
+
+                <li>
+                  Worked across C#/.NET, FastAPI, React, Tailwind CSS and
+                  MySQL.
+                </li>
+
+                <li>
+                  Built authentication and validation functionality.
+                </li>
+
+                <li>
+                  Designed and maintained database structures.
+                </li>
+
+                <li>
+                  Produced deployment documentation and maintained company
+                  databases using HeidiSQL.
+                </li>
+
+              </ul>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         PROJECTS
+    ================================= -->
+
+    <section id="projects">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>04 — Projects</span>
+          <h2>Things I've built.</h2>
+
+          <p>
+            A mixture of full-stack applications, research, machine learning
+            experiments and creative technology projects.
+          </p>
+        </div>
+
+
+        <div class="projects-grid">
+
+
+          <!-- ML AUDIO VISUALISER -->
+
+          <article class="project-card">
+
+            <div class="project-image">
+              🎵
+            </div>
+
+            <div class="project-content">
+
+              <h3>ML Audio Visualiser</h3>
+
+              <p>
+                A full-stack application exploring the relationship between
+                music, machine learning and generative visual experiences.
+                Built independently using React and FastAPI.
+              </p>
+
+              <div class="project-tech">
+                <span>React</span>
+                <span>FastAPI</span>
+                <span>Python</span>
+                <span>Machine Learning</span>
+              </div>
+
+              <div class="project-links">
+
+                <a
+                  href="https://github.com/OliverDunnDev/mp3visualizer"
+                  target="_blank"
+                >
+                  GitHub →
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- MOVIE APP -->
+
+          <article class="project-card">
+
+            <div class="project-image">
+              🎬
+            </div>
+
+            <div class="project-content">
+
+              <h3>Movie Database</h3>
+
+              <p>
+                A React application featuring movie searching, filtering,
+                favourites and API-driven content.
+              </p>
+
+              <div class="project-tech">
+                <span>React</span>
+                <span>JavaScript</span>
+                <span>APIs</span>
+                <span>CSS</span>
+              </div>
+
+              <div class="project-links">
+
+                <a
+                  href="https://github.com/OliverDunnDev/movie-app"
+                  target="_blank"
+                >
+                  GitHub →
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- QUANTUM ML -->
+
+          <article class="project-card">
+
+            <div class="project-image">
+              ⚛️
+            </div>
+
+            <div class="project-content">
+
+              <h3>Q-SafeML</h3>
+
+              <p>
+                Published undergraduate research investigating safety
+                assessment approaches for Quantum Machine Learning using
+                quantum distance metrics.
+              </p>
+
+              <div class="project-tech">
+                <span>Python</span>
+                <span>Qiskit</span>
+                <span>Machine Learning</span>
+                <span>Research</span>
+              </div>
+
+              <div class="project-links">
+
+                <a
+                  href="https://arxiv.org/abs/2509.04536"
+                  target="_blank"
+                >
+                  Read Research →
+                </a>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- GAME JAM -->
+
+          <article class="project-card">
+
+            <div class="project-image">
+              🎮
+            </div>
+
+            <div class="project-content">
+
+              <h3>Bubboliver vs Bubble Wizard</h3>
+
+              <p>
+                A game developed during Global Game Jam 2025 as part of a
+                three-person team, with responsibility for programming
+                gameplay mechanics.
+              </p>
+
+              <div class="project-tech">
+                <span>Unity</span>
+                <span>C#</span>
+                <span>Game Development</span>
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         ACHIEVEMENTS
+    ================================= -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span>05 — Achievements</span>
+          <h2>Beyond the code.</h2>
+        </div>
+
+
+        <div class="achievement-grid">
+
+          <article class="achievement">
+            <h3>First Class Honours</h3>
+            <p>
+              BSc Computer Science from the University of Hull with a 78%
+              overall average.
+            </p>
+          </article>
+
+
+          <article class="achievement">
+            <h3>Dean's Prize</h3>
+            <p>
+              Awarded for academic excellence and research achievement.
+            </p>
+          </article>
+
+
+          <article class="achievement">
+            <h3>Published Research</h3>
+            <p>
+              Undergraduate dissertation published on arXiv exploring Quantum
+              Machine Learning safety.
+            </p>
+          </article>
+
+
+          <article class="achievement">
+            <h3>Bebras Finalist</h3>
+            <p>
+              Qualified for the Bebras National Coding Competition final in
+              Oxford.
+            </p>
+          </article>
+
+
+          <article class="achievement">
+            <h3>Global Game Jam 2025</h3>
+            <p>
+              Developed a complete game alongside a small team within 48 hours.
+            </p>
+          </article>
+
+
+          <article class="achievement">
+            <h3>Security Work</h3>
+            <p>
+              Independently resolved 86 security-related development items in
+              a two-week period.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================
+         CONTACT
+    ================================= -->
+
+    <section class="contact" id="contact">
+
+      <div class="container">
+
+        <div class="contact-content">
+
+          <h2>Let's build something.</h2>
+
+          <p>
+            I'm always interested in interesting software, creative technology
+            and development opportunities.
+          </p>
+
+          <div class="contact-links">
+
+            <a
+              href="mailto:oliverdunndev@gmail.com"
+              class="btn"
+            >
+              Email Me
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/oliver-dunn-a404a4251/"
+              target="_blank"
+              class="btn btn-outline"
+            >
+              LinkedIn
+            </a>
+
+            <a
+              href="https://github.com/OliverDunnDev"
+              target="_blank"
+              class="btn btn-outline"
+            >
+              GitHub
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================================
+       FOOTER
+  ================================= -->
+
+  <footer>
+
+    <div class="container">
+      © <span id="year"></span> Oliver Dunn. Built with HTML, CSS & JavaScript.
+    </div>
+
+  </footer>
+
+
+  <!-- ================================
+       JAVASCRIPT
+  ================================= -->
+
+  <script>
+
+    // Mobile navigation
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+
+    // Close mobile menu when a link is clicked
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+
+    });
+
+
+    // Automatically update footer year
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // Reveal animation on scroll
+
+    const observer = new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+
+    document.querySelectorAll(
+      ".skill-card, .project-card, .timeline-item, .achievement"
+    ).forEach(element => {
+
+      element.style.opacity = "0";
+      element.style.transform = "translateY(20px)";
+      element.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+
+      observer.observe(element);
+
+    });
+
+  </script>
+
+</body>
+</html>
