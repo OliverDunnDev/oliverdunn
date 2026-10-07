@@ -9,17 +9,17 @@
    Dark-first; light override via media query
 ============================================ */
 :root {
-  --bg:      #0A0A0A;
-  --surface: #111111;
-  --card:    #161616;
-  --fg:      #F0F0F0;
-  --muted:   #747474;
-  --border:  #262626;
-
-  --y: #FFE600;   /* Bauhaus yellow  */
-  --r: #FF2B21;   /* Bauhaus red     */
-  --b: #1F3DFF;   /* Bauhaus blue    */
-  --g: #00D97E;   /* green accent    */
+   --bg: #0A0A0A;
+   --surface: #111111;
+   --card: #161616;
+   --fg: #F0F0F0;
+   --muted: #A0A0A0; /* changed from #747474 */
+   --border: #262626;
+    
+   --y: #FFE600;
+   --r: #FF2B21;
+   --b: #1F3DFF;
+   --g: #00D97E;
 
   --max: 1180px;
   color-scheme: dark;
@@ -606,6 +606,16 @@ nav {
   text-transform: none;
 }
 .cl-arrow { color: var(--y); font-size: 1.1rem; flex-shrink: 0; }
+
+.about-text p,
+.hero-desc,
+.sh p,
+.ach p,
+.proj-body p,
+.tl-list li,
+.contact-text p {
+   font-weight: 500;
+}
 
 /* ============================
    FOOTER
