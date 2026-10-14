@@ -15,7 +15,7 @@
    --fg: #F0F0F0;
    --muted: #A0A0A0; /* changed from #747474 */
    --border: #262626;
-    
+    
    --y: #FFE600;
    --r: #FF2B21;
    --b: #1F3DFF;
@@ -487,6 +487,20 @@ nav {
   letter-spacing: -0.02em;
 }
 .proj-body { padding: 28px; }
+.proj-status {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 8px;
+  border: 1px solid color-mix(in srgb, var(--pc, var(--y)) 55%, var(--border));
+  color: var(--pc, var(--y));
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.proj-link-sep { color: var(--muted); margin-inline: 4px; }
+
 .proj-body h3 {
   font-size: 1.5rem;
   font-weight: 800;
@@ -921,62 +935,93 @@ footer {
     <div class="sh">
       <span class="tag">04 — Projects</span>
       <h2>Things I've built.</h2>
-      <p>Production apps, published research, ML experiments and creative technology — a proper spread.</p>
+      <p>Full-stack applications, creative tools and published research, built to solve problems that interest me.</p>
     </div>
 
     <div class="proj-grid">
-      <article class="proj-card rev" style="--pc: var(--y)">
+      <article class="proj-card rev" style="--pc: #A78BFA">
         <div class="proj-head">
+          <span class="proj-emoji" aria-hidden="true">◉</span>
           <span class="proj-num">01</span>
         </div>
         <div class="proj-body">
-          <h3>ML Audio Visualiser</h3>
-          <p>A full-stack app exploring the relationship between music, machine learning and generative visual experiences. Built independently using React and FastAPI.</p>
+          <span class="proj-status">Work in progress</span>
+          <h3>Reelspin</h3>
+          <p>A film-club app for groups of friends to choose what to watch and keep track of films they've seen together. Users can create clubs, manage memberships, record viewing history and rate films. The project brings a React frontend together with a FastAPI backend and PostgreSQL database.</p>
           <div class="proj-tech">
-            <span>React</span><span>FastAPI</span><span>Python</span><span>ML</span>
+            <span>React</span><span>Vite</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span>
           </div>
-          <a href="https://github.com/OliverDunnDev/mp3visualizer" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+          <a href="https://oliverdunndev.github.io/reelspin/" target="_blank" rel="noopener" class="proj-link">Live Frontend ↗</a>
+          <span class="proj-link-sep"> / </span>
+          <a href="https://github.com/OliverDunnDev/reelspin" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
         </div>
       </article>
 
-      <article class="proj-card rev" style="--pc: var(--r)">
+      <article class="proj-card rev" style="--pc: #FFE600">
         <div class="proj-head">
+          <span class="proj-emoji" aria-hidden="true">▦</span>
           <span class="proj-num">02</span>
         </div>
         <div class="proj-body">
-          <h3>Movie Database</h3>
-          <p>A React application with movie searching, filtering, favourites and API-driven content.</p>
+          <span class="proj-status">Work in progress</span>
+          <h3>GroupMonkey</h3>
+          <p>A monkey-themed project management tool inspired by platforms such as Azure DevOps. Teams can organise work through groups, boards, tasks and goals, with admin-configurable AI agents designed to bring external AI services into team workflows.</p>
           <div class="proj-tech">
-            <span>React</span><span>JavaScript</span><span>APIs</span><span>CSS</span>
+            <span>React</span><span>C#</span><span>.NET</span><span>AI Integration</span>
           </div>
-          <a href="https://github.com/OliverDunnDev/movie-app" target="_blank" rel="noopener" class="proj-link">View on GitHub →</a>
+          <a href="https://oliverdunndev.github.io/groupmonkey/" target="_blank" rel="noopener" class="proj-link">Live Project ↗</a>
+          <span class="proj-link-sep"> / </span>
+          <a href="https://github.com/OliverDunnDev/groupmonkey" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
+        </div>
+      </article>
+
+      <article class="proj-card rev" style="--pc: #FF443A">
+        <div class="proj-head">
+          <span class="proj-emoji" aria-hidden="true">♫</span>
+          <span class="proj-num">03</span>
+        </div>
+        <div class="proj-body">
+          <span class="proj-status">Work in progress</span>
+          <h3>JamJar</h3>
+          <p>A music collaboration platform exploring how version-control concepts could work for bands. The goal is to give musicians a shared workspace to manage song tracks and track changes as a song develops, rather than losing track of files and versions across separate conversations.</p>
+          <div class="proj-tech">
+            <span>Python</span><span>React</span><span>Music Collaboration</span><span>Version Control</span>
+          </div>
+          <a href="https://oliverdunndev.github.io/jamjar/" target="_blank" rel="noopener" class="proj-link">Live Project ↗</a>
+          <span class="proj-link-sep"> / </span>
+          <a href="https://github.com/OliverDunnDev/jamjar" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
         </div>
       </article>
 
       <article class="proj-card rev" style="--pc: var(--b)">
-        <div class="proj-head">>
-          <span class="proj-num">03</span>
+        <div class="proj-head">
+          <span class="proj-emoji" aria-hidden="true">◈</span>
+          <span class="proj-num">04</span>
         </div>
         <div class="proj-body">
           <h3>Q-SafeML</h3>
-          <p>Published undergraduate research investigating safety assessment approaches for Quantum Machine Learning using quantum distance metrics.</p>
+          <p>Published undergraduate research investigating safety assessment for quantum machine-learning classifiers using statistical distance measures. The project combines quantum computing and machine-learning techniques to explore ways of monitoring classifier behaviour.</p>
           <div class="proj-tech">
-            <span>Python</span><span>Qiskit</span><span>ML</span><span>Research</span>
+            <span>Python</span><span>Qiskit</span><span>Machine Learning</span><span>Research</span>
           </div>
           <a href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener" class="proj-link">Read the Research →</a>
         </div>
       </article>
 
-      <article class="proj-card rev" style="--pc: var(--g)">
+      <article class="proj-card rev" style="--pc: #FF8C00">
         <div class="proj-head">
-          <span class="proj-num">04</span>
+          <span class="proj-emoji" aria-hidden="true">〰</span>
+          <span class="proj-num">05</span>
         </div>
         <div class="proj-body">
-          <h3>Bubboliver vs Bubble Wizard</h3>
-          <p>A complete game built during Global Game Jam 2025 — three-person team, 48 hours, responsible for all gameplay mechanics programming.</p>
+          <h3>ML Audio Visualiser</h3>
+          <p>A full-stack audio visualisation app that analyses uploaded music and turns audio features such as tempo, spectral content and onsets into animated visual experiences. Built to explore the intersection of audio processing, frontend interaction and generative visuals.</p>
           <div class="proj-tech">
-            <span>Unity</span><span>C#</span><span>Game Dev</span>
+            <span>React</span><span>FastAPI</span><span>Python</span><span>librosa</span>
           </div>
+          <a href="https://mp3visualizer.vercel.app/" target="_blank" rel="noopener" class="proj-link">Try the App ↗</a>
+          <span class="proj-link-sep"> / </span>
+          <a href="https://github.com/OliverDunnDev/mp3visualizer" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
         </div>
       </article>
     </div>
