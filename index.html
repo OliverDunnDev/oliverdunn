@@ -395,6 +395,112 @@ nav {
 }
 
 /* ============================
+   ACADEMICS & RESEARCH
+============================ */
+#academics {
+  border-top: 2px solid var(--border);
+  background: var(--bg);
+}
+.academic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.academic-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  padding: 30px;
+  min-width: 0;
+}
+.academic-card.wide { grid-column: 1 / -1; }
+.academic-card h3 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.academic-kicker {
+  display: block;
+  color: var(--y);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.academic-card p,
+.academic-card li {
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+.academic-card p { margin-bottom: 12px; }
+.academic-card p:last-child { margin-bottom: 0; }
+.academic-card strong { color: var(--fg); font-weight: 600; }
+.academic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+.academic-list li {
+  position: relative;
+  padding-left: 18px;
+}
+.academic-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--y);
+}
+.academic-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 20px;
+}
+.academic-metric {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px 14px;
+}
+.academic-metric strong {
+  display: block;
+  color: var(--y);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.academic-metric span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.academic-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--y);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+.academic-link:hover { border-color: currentColor; }
+.academic-note {
+  border-left: 4px solid var(--y);
+  padding: 16px 20px;
+  margin-top: 22px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.academic-note strong { color: var(--fg); }
+
+/* ============================
    EXPERIENCE
 ============================ */
 #experience {
@@ -661,6 +767,9 @@ footer {
 @media (max-width: 900px) {
   .skills-grid, .ach-grid { grid-template-columns: 1fr 1fr; }
   .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .academic-grid { grid-template-columns: 1fr; }
+  .academic-card.wide { grid-column: auto; }
+  .academic-metrics { grid-template-columns: 1fr 1fr 1fr; }
   .tl-item { grid-template-columns: 1fr; gap: 10px; }
   .contact-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-geo { display: none; }
@@ -683,6 +792,8 @@ footer {
   }
   .nav-links.open { display: flex; }
   .proj-grid, .skills-grid, .ach-grid { grid-template-columns: 1fr; }
+  .academic-metrics { grid-template-columns: 1fr; }
+  .academic-card { padding: 24px; }
   .stats { grid-template-columns: 1fr 1fr; }
   .hero h1 { font-size: 3.2rem; }
 }
@@ -695,6 +806,7 @@ footer {
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
+      <li><a href="#academics">Academics</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -820,11 +932,86 @@ footer {
   </div>
 </section>
 
+<!-- ACADEMICS & RESEARCH -->
+<section id="academics">
+  <div class="wrap">
+    <div class="sh">
+      <span class="tag">02 — Academics &amp; Research</span>
+      <h2>The academic foundation<br>behind the work.</h2>
+      <p>A strong computer science degree, a completed research project, and practical experience assessing technical risks.</p>
+    </div>
+
+    <div class="academic-grid">
+      <article class="academic-card rev" style="--sc: var(--y)">
+        <span class="academic-kicker">Degree · 2022–2025</span>
+        <h3>BSc (Hons) Computer Science</h3>
+        <p><strong>University of Hull</strong></p>
+        <p>Graduated with First Class Honours and a 78% overall average. Received the Dean’s Prize for academic excellence.</p>
+        <div class="academic-metrics">
+          <div class="academic-metric">
+            <strong>1st</strong>
+            <span>Degree classification</span>
+          </div>
+          <div class="academic-metric">
+            <strong>78%</strong>
+            <span>Overall average</span>
+          </div>
+          <div class="academic-metric">
+            <strong>100%</strong>
+            <span>Dissertation report</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="academic-card rev" style="--sc: var(--b)">
+        <span class="academic-kicker">Published undergraduate research</span>
+        <h3>Q-SafeML</h3>
+        <p><strong>Q-SafeML: Safety Assessment of Quantum Machine Learning via Quantum Distance Metrics</strong></p>
+        <p>My dissertation investigated how distance-based measures can help assess the behaviour of quantum machine-learning classifiers. The work brought together Python, Qiskit and machine-learning methods, and developed my experience in experimental research, analysing model behaviour and communicating technical findings.</p>
+        <a href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener" class="academic-link">Read the paper ↗</a>
+      </article>
+
+      <article class="academic-card rev" style="--sc: var(--r)">
+        <span class="academic-kicker">Research preparation</span>
+        <h3>From question to evidence</h3>
+        <p>The Q-SafeML project gave me experience taking a research question through implementation, experimentation, analysis and written evaluation. It also taught me to think carefully about what a metric can establish, where its limitations lie, and how conclusions depend on the evaluation setup.</p>
+        <ul class="academic-list">
+          <li>Python-based implementation and experimentation.</li>
+          <li>Machine learning and quantum computing with Qiskit.</li>
+          <li>Assessment of classifier behaviour using distance-based measures.</li>
+          <li>Research writing, interpretation of results and discussion of limitations.</li>
+        </ul>
+      </article>
+
+      <article class="academic-card rev" style="--sc: var(--g)">
+        <span class="academic-kicker">Technical foundations</span>
+        <h3>Skills relevant to AI safety</h3>
+        <p>My degree and development work provide a practical foundation for empirical research into AI systems.</p>
+        <ul class="academic-list">
+          <li><strong>Machine learning:</strong> model evaluation, neural networks, generative models and the Python ML ecosystem.</li>
+          <li><strong>Software engineering:</strong> building reproducible tools, testing code, debugging failures and working with version control.</li>
+          <li><strong>Security mindset:</strong> investigating vulnerabilities and considering how systems fail in real deployments.</li>
+          <li><strong>Research interests:</strong> AI alignment, reward hacking, deceptive behaviour and the reliability of safety evaluations.</li>
+        </ul>
+      </article>
+
+      <article class="academic-card wide rev" style="--sc: #FF8C00">
+        <span class="academic-kicker">Why I’m applying</span>
+        <h3>Building on safety-related research</h3>
+        <p>My published work concerns the assessment of quantum machine-learning systems, not frontier language-model alignment. I see it as a starting point: I have already worked on a safety-focused research question, implemented technical experiments and considered the limits of evaluation methods. I now want to apply that foundation to questions about how advanced AI systems behave under incentives, whether evaluations can reliably reveal undesirable behaviour, and how we can distinguish genuine improvements in safety from improvements that only appear in a test.</p>
+        <div class="academic-note">
+          <strong>Fit, not an unverified claim:</strong> These qualifications give me relevant preparation for a research fellowship in AI safety. The fellowship’s formal eligibility requirements and selection decision remain with Pivotal Research.
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="wrap">
     <div class="sh">
-      <span class="tag">02 — Skills</span>
+      <span class="tag">03 — Skills</span>
       <h2>The full toolkit.</h2>
       <p>Languages, frameworks and disciplines I use to ship real things.</p>
     </div>
@@ -886,7 +1073,7 @@ footer {
 <section id="experience">
   <div class="wrap">
     <div class="sh">
-      <span class="tag">03 — Experience</span>
+      <span class="tag">04 — Experience</span>
       <h2>Where I've shipped code.</h2>
     </div>
 
@@ -933,7 +1120,7 @@ footer {
 <section id="projects">
   <div class="wrap">
     <div class="sh">
-      <span class="tag">04 — Projects</span>
+      <span class="tag">05 — Projects</span>
       <h2>Things I've built.</h2>
       <p>Full-stack applications, creative tools and published research, built to solve problems that interest me.</p>
     </div>
@@ -1032,7 +1219,7 @@ footer {
 <section id="achievements">
   <div class="wrap">
     <div class="sh">
-      <span class="tag">05 — Achievements</span>
+      <span class="tag">06 — Achievements</span>
       <h2>Beyond the code.</h2>
     </div>
 
@@ -1075,7 +1262,7 @@ footer {
   <div class="wrap">
     <div class="contact-grid">
       <div class="contact-text">
-        <span class="tag">06 — Contact</span>
+        <span class="tag">07 — Contact</span>
         <h2>Got a problem?<br><em>Let's build<br>the solution.</em></h2>
         <p style="margin-top: 20px">Open to interesting projects, research collaborations and development opportunities. Always keen to talk.</p>
       </div>
