@@ -1,1323 +1,445 @@
-<title>Oliver Dunn</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <meta name="description" content="Oliver Dunn is a software developer working across full-stack engineering, Python, data and creative technology.">
+  <meta property="og:title" content="Oliver Dunn — Software Developer">
+  <meta property="og:description" content="Software engineer, researcher and builder of useful things.">
+  <meta property="og:type" content="website">
+  <title>Oliver Dunn — Software Developer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101010;
+      --panel: #171717;
+      --panel-2: #1d1d1d;
+      --text: #f3f1eb;
+      --muted: #a5a39d;
+      --line: #30302d;
+      --accent: #ffe600;
+      --max: 1080px;
+      --radius: 6px;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 32px;
+      --space-5: 48px;
+      --space-6: 64px;
+      --space-7: 88px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    svg { display: block; }
+    .icon { width: 18px; height: 18px; flex: 0 0 auto; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .wrap { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .mono, .eyebrow, .nav-links, .meta, .project-index, .footer-meta {
+      font-family: "Space Mono", monospace;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--accent); }
+    .muted { color: var(--muted); }
+    .accent { color: var(--accent); }
+    .skip-link {
+      position: absolute; left: 12px; top: -60px; z-index: 1000;
+      background: var(--accent); color: #111; padding: 10px 14px; border-radius: var(--radius);
+    }
+    .skip-link:focus { top: 12px; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgb(16 16 16 / 90%);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+    .brand { font-size: 17px; font-weight: 700; letter-spacing: -.06em; }
+    .brand span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: var(--space-4); }
+    .nav-links { display: flex; align-items: center; gap: var(--space-3); list-style: none; padding: 0; margin: 0; }
+    .nav-links a { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; transition: color .2s; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+    .nav-cta { color: var(--accent); font-size: 12px; font-weight: 700; }
+    .menu-btn { display: none; color: var(--text); border: 1px solid var(--line); background: transparent; border-radius: var(--radius); padding: 9px; cursor: pointer; }
+    .hero { min-height: min(760px, calc(100svh - 72px)); display: flex; align-items: center; padding-block: var(--space-7); }
+    .hero-inner { max-width: 900px; }
+    .hero-top { display: flex; align-items: center; gap: 12px; margin-bottom: var(--space-4); }
+    .availability { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
+    .availability::before { content: ""; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px rgb(255 230 0 / 10%); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 950px; font-size: clamp(52px, 8.8vw, 108px); line-height: .98; letter-spacing: -.085em; margin-bottom: var(--space-4); font-weight: 600; }
+    h1 span { color: var(--accent); }
+    .hero-copy { max-width: 650px; color: var(--muted); font-size: clamp(17px, 2vw, 20px); line-height: 1.7; margin-bottom: var(--space-5); }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 46px; padding: 0 18px; border: 1px solid var(--line); border-radius: var(--radius);
+      font-size: 13px; font-weight: 700; transition: transform .2s, border-color .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: #111; }
+    .button.primary:hover { background: #fff06a; }
+    .hero-note { margin-top: var(--space-6); padding-top: var(--space-3); border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 12px 28px; color: var(--muted); font: 11px "Space Mono", monospace; text-transform: uppercase; letter-spacing: .04em; }
+    .hero-note span { display: inline-flex; align-items: center; gap: 9px; }
+    .hero-note .icon { color: var(--accent); width: 15px; height: 15px; }
+    section { padding-block: var(--space-7); border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 1fr 1.3fr; gap: var(--space-5); align-items: end; margin-bottom: var(--space-5); }
+    .section-head h2 { font-size: clamp(34px, 5vw, 58px); line-height: 1.04; letter-spacing: -.07em; font-weight: 600; margin: 12px 0 0; }
+    .section-intro { max-width: 540px; color: var(--muted); margin: 0; font-size: 16px; }
+    .about-layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(240px, .6fr); gap: var(--space-6); }
+    .about-copy p { color: var(--muted); margin-bottom: var(--space-3); max-width: 700px; }
+    .about-copy strong { color: var(--text); font-weight: 600; }
+    .fact-list { border-top: 1px solid var(--line); }
+    .fact { display: flex; justify-content: space-between; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+    .fact span:first-child { color: var(--muted); }
+    .fact strong { text-align: right; font-weight: 600; }
+    .skills-line { display: flex; flex-wrap: wrap; gap: 9px; margin-top: var(--space-4); }
+    .skill { padding: 7px 11px; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted); font: 11px "Space Mono", monospace; }
+    .timeline { border-top: 1px solid var(--line); }
+    .role { display: grid; grid-template-columns: 190px 1fr; gap: var(--space-5); padding: var(--space-4) 0; border-bottom: 1px solid var(--line); }
+    .role-date { color: var(--accent); font: 11px "Space Mono", monospace; padding-top: 7px; }
+    .role h3 { font-size: 23px; letter-spacing: -.04em; margin-bottom: 4px; }
+    .role-company { color: var(--muted); font-size: 13px; margin-bottom: var(--space-2); }
+    .role ul { margin: 0; padding-left: 18px; color: var(--muted); }
+    .role li { padding-left: 4px; margin: 7px 0; }
+    .role li::marker { color: var(--accent); }
+    .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+    .project {
+      min-width: 0; padding: var(--space-4); border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--panel); display: flex; flex-direction: column; transition: border-color .2s, transform .2s;
+    }
+    .project:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-4); }
+    .project-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--radius); color: var(--accent); }
+    .project-index { color: #77756f; font-size: 11px; }
+    .project h3 { font-size: 25px; letter-spacing: -.05em; margin-bottom: 9px; }
+    .project p { color: var(--muted); font-size: 14px; margin-bottom: var(--space-3); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; margin-bottom: var(--space-3); }
+    .project-tags span { color: #c4c1b8; font: 10px "Space Mono", monospace; background: var(--panel-2); border-radius: var(--radius); padding: 5px 8px; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 18px; padding-top: var(--space-2); border-top: 1px solid var(--line); }
+    .text-link { display: inline-flex; align-items: center; gap: 7px; color: var(--accent); font-size: 12px; font-weight: 700; }
+    .text-link:hover { color: var(--text); }
+    .project-more { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .project-more strong { color: var(--text); }
+    .education { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+    .education-main { border-left: 2px solid var(--accent); padding-left: var(--space-3); }
+    .education-main h3 { font-size: 23px; margin-bottom: 4px; }
+    .education-main p { color: var(--muted); margin-bottom: 8px; font-size: 14px; }
+    .education-details { display: flex; flex-direction: column; gap: 10px; }
+    .education-detail { display: flex; gap: 12px; align-items: flex-start; color: var(--muted); font-size: 13px; }
+    .education-detail .icon { color: var(--accent); margin-top: 2px; }
+    .research-link { color: var(--accent); font-weight: 600; }
+    .achievements { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+    .achievement { display: inline-flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
+    .achievement .icon { color: var(--accent); width: 16px; height: 16px; }
+    .contact { display: grid; grid-template-columns: 1.2fr .8fr; gap: var(--space-5); align-items: end; }
+    .contact h2 { font-size: clamp(42px, 7vw, 78px); line-height: .98; letter-spacing: -.08em; margin: 14px 0 var(--space-3); }
+    .contact h2 span { color: var(--accent); }
+    .contact p { color: var(--muted); max-width: 500px; margin: 0; }
+    .contact-links { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+    .contact-link { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--line); }
+    .contact-link span { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .contact-link .icon { color: var(--accent); }
+    footer { border-top: 1px solid var(--line); padding: var(--space-3) 0; color: var(--muted); font: 10px "Space Mono", monospace; }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-inner a:hover { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    @media (max-width: 760px) {
+      .wrap { width: min(calc(100% - 36px), var(--max)); }
+      .nav-links { display: none; position: absolute; top: 71px; left: 0; right: 0; padding: 18px; background: var(--panel); border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 18px; }
+      .nav-links.open { display: flex; }
+      .menu-btn { display: inline-flex; }
+      .nav-cta { display: none; }
+      .hero { min-height: auto; padding-block: 100px 72px; }
+      .section-head, .about-layout, .education, .contact { grid-template-columns: 1fr; gap: var(--space-3); }
+      .role { grid-template-columns: 1fr; gap: 8px; }
+      .projects { grid-template-columns: 1fr; }
+      section { padding-block: 68px; }
+    }
+    @media (max-width: 420px) {
+      .wrap { width: min(calc(100% - 28px), var(--max)); }
+      h1 { font-size: 49px; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<style>
-/* ============================================
-   TOKENS — Bauhaus × Pop-Art
-   Flat grid, primary-color maximalism
-   Dark-first; light override via media query
-============================================ */
-:root {
-   --bg: #0A0A0A;
-   --surface: #111111;
-   --card: #161616;
-   --fg: #F0F0F0;
-   --muted: #A0A0A0; /* changed from #747474 */
-   --border: #262626;
-    
-   --y: #FFE600;
-   --r: #FF2B21;
-   --b: #1F3DFF;
-   --g: #00D97E;
-
-  --max: 1180px;
-  color-scheme: dark;
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) {
-    --bg:      #F0EFE9;
-    --surface: #E5E4DE;
-    --card:    #D8D7D1;
-    --fg:      #0A0A0A;
-    --muted:   #5A5A56;
-    --border:  #BFBEB8;
-    color-scheme: light;
-  }
-}
-:root[data-theme="light"] {
-  --bg:      #F0EFE9;
-  --surface: #E5E4DE;
-  --card:    #D8D7D1;
-  --fg:      #0A0A0A;
-  --muted:   #5A5A56;
-  --border:  #BFBEB8;
-  color-scheme: light;
-}
-
-/* RESET */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Barlow', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
-}
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-h1, h2, h3, h4 { font-family: 'Barlow Condensed', system-ui, sans-serif; }
-
-.wrap {
-  width: min(92%, var(--max));
-  margin-inline: auto;
-}
-section { padding-block: 96px; }
-
-/* ============================
-   NAV
-============================ */
-header {
-  position: sticky;
-  top: env(safe-area-inset-top, 0px);
-  z-index: 100;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 2px solid var(--border);
-}
-nav {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-}
-.logo {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.logo em { font-style: normal; color: var(--y); }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.nav-links a {
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  transition: color 0.18s;
-}
-.nav-links a:hover { color: var(--y); }
-
-.menu-btn {
-  display: none;
-  background: none;
-  border: 2px solid var(--border);
-  color: var(--fg);
-  width: 38px; height: 38px;
-  cursor: pointer;
-  font-size: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ============================
-   BUTTONS
-============================ */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.18s;
-  white-space: nowrap;
-}
-.btn-fill  { background: var(--y); color: #000; border-color: var(--y); }
-.btn-fill:hover { background: transparent; color: var(--y); }
-.btn-ghost { background: transparent; color: var(--fg); border-color: var(--border); }
-.btn-ghost:hover { border-color: var(--y); color: var(--y); }
-
-/* ============================
-   SECTION LABELS
-============================ */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--y);
-  border: 2px solid color-mix(in srgb, var(--y) 40%, transparent);
-  padding: 5px 12px;
-  margin-bottom: 18px;
-}
-.sh { margin-bottom: 56px; }
-.sh h2 {
-  font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  line-height: 1.03;
-  text-wrap: balance;
-}
-.sh p {
-  color: var(--muted);
-  max-width: 580px;
-  margin-top: 14px;
-  font-size: 1.05rem;
-}
-
-/* ============================
-   HERO
-============================ */
-.hero {
-  min-height: calc(100svh - 64px);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Ben-Day dot grid — pop-art */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--y) 20%, transparent) 1.5px,
-    transparent 1.5px
-  );
-  background-size: 28px 28px;
-  pointer-events: none;
-}
-
-.hero-body {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-  padding-block: 60px 40px;
-}
-
-/* Bauhaus geometric composition — top right */
-.hero-geo {
-  position: absolute;
-  right: -10px;
-  top: 0;
-  width: clamp(260px, 38vw, 500px);
-  height: clamp(260px, 38vw, 500px);
-  pointer-events: none;
-}
-.geo-sq   { fill: none; stroke: var(--y); stroke-width: 1.5; }
-.geo-circ { fill: none; stroke: var(--r); stroke-width: 1.5; }
-.geo-circ2 { fill: none; stroke: var(--b); stroke-width: 1; }
-.geo-rule { stroke: var(--b); stroke-width: 1; }
-.geo-dot-y { fill: var(--y); }
-.geo-dot-r { fill: var(--r); }
-.geo-dot-b { fill: var(--b); }
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--y);
-  border: 2px solid var(--y);
-  padding: 7px 16px;
-  margin-bottom: 28px;
-}
-.dot-live {
-  width: 8px; height: 8px;
-  background: var(--g);
-  border-radius: 50%;
-  flex-shrink: 0;
-  animation: blink 2.4s ease-in-out infinite;
-}
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
-
-.hero h1 {
-  font-size: clamp(3.6rem, 10vw, 8.5rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  margin-bottom: 28px;
-}
-.hero h1 .acc { color: var(--y); }
-
-.hero-desc {
-  max-width: 560px;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.8vw, 1.12rem);
-  margin-bottom: 36px;
-  line-height: 1.75;
-}
-.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; }
-
-/* Ticker */
-.ticker-rail {
-  border-top: 2px solid var(--border);
-  overflow: hidden;
-  white-space: nowrap;
-  padding-block: 10px;
-  background: var(--surface);
-}
-.ticker-track {
-  display: inline-block;
-  animation: tick 30s linear infinite;
-}
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.ti {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-right: 36px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-}
-.ti-sep { color: var(--y); }
-
-/* ============================
-   ABOUT
-============================ */
-#about {
-  background: var(--surface);
-  border-top: 2px solid var(--border);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 72px;
-  align-items: start;
-}
-.about-text p {
-  color: var(--muted);
-  margin-bottom: 16px;
-  font-size: 1.05rem;
-}
-.about-text strong { color: var(--fg); font-weight: 600; }
-
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-.stat {
-  background: var(--card);
-  border: 2px solid var(--border);
-  padding: 26px 20px;
-  transition: border-color 0.18s;
-}
-.stat:hover { border-color: var(--sc, var(--y)); }
-.stat-n {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 3rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--sc, var(--y));
-  margin-bottom: 8px;
-  font-variant-numeric: tabular-nums;
-}
-.stat-l {
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-  line-height: 1.4;
-}
-
-/* ============================
-   SKILLS
-============================ */
-#skills { border-top: 2px solid var(--border); }
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-.skill-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  padding: 28px;
-  transition: border-color 0.18s, background 0.18s;
-}
-.skill-card:hover {
-  border-color: var(--sc, var(--y));
-  background: color-mix(in srgb, var(--sc, var(--y)) 5%, var(--card));
-}
-.skill-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-.skill-pip {
-  width: 12px; height: 12px;
-  background: var(--sc, var(--y));
-  flex-shrink: 0;
-}
-.skill-card h3 {
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-.skill-tags span {
-  font-size: 0.8rem;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  transition: border-color 0.18s, color 0.18s;
-}
-.skill-card:hover .skill-tags span {
-  border-color: color-mix(in srgb, var(--sc, var(--y)) 35%, var(--border));
-  color: var(--fg);
-}
-
-/* ============================
-   ACADEMICS & RESEARCH
-============================ */
-#academics {
-  border-top: 2px solid var(--border);
-  background: var(--bg);
-}
-.academic-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-.academic-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  padding: 30px;
-  min-width: 0;
-}
-.academic-card.wide { grid-column: 1 / -1; }
-.academic-card h3 {
-  font-size: 1.55rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-.academic-kicker {
-  display: block;
-  color: var(--y);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: 12px;
-}
-.academic-card p,
-.academic-card li {
-  color: var(--muted);
-  font-size: 0.96rem;
-}
-.academic-card p { margin-bottom: 12px; }
-.academic-card p:last-child { margin-bottom: 0; }
-.academic-card strong { color: var(--fg); font-weight: 600; }
-.academic-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 14px;
-}
-.academic-list li {
-  position: relative;
-  padding-left: 18px;
-}
-.academic-list li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--y);
-}
-.academic-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-  margin-top: 20px;
-}
-.academic-metric {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  padding: 18px 14px;
-}
-.academic-metric strong {
-  display: block;
-  color: var(--y);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 2rem;
-  line-height: 1.1;
-  margin-bottom: 6px;
-}
-.academic-metric span {
-  color: var(--muted);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.academic-link {
-  display: inline-block;
-  margin-top: 8px;
-  color: var(--y);
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-bottom: 1px solid transparent;
-}
-.academic-link:hover { border-color: currentColor; }
-.academic-note {
-  border-left: 4px solid var(--y);
-  padding: 16px 20px;
-  margin-top: 22px;
-  background: var(--surface);
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-.academic-note strong { color: var(--fg); }
-
-/* ============================
-   EXPERIENCE
-============================ */
-#experience {
-  border-top: 2px solid var(--border);
-  background: var(--surface);
-}
-.tl-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 52px;
-  padding-block: 44px;
-  border-bottom: 2px solid var(--border);
-}
-.tl-date {
-  display: block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--y);
-  margin-bottom: 10px;
-}
-.tl-co {
-  display: inline-block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-}
-.tl-right h3 {
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  margin-bottom: 18px;
-}
-.tl-list { display: flex; flex-direction: column; gap: 10px; }
-.tl-list li {
-  color: var(--muted);
-  font-size: 0.97rem;
-  padding-left: 18px;
-  position: relative;
-}
-.tl-list li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--y);
-}
-.tl-list strong { color: var(--fg); font-weight: 600; }
-
-/* ============================
-   PROJECTS
-============================ */
-#projects { border-top: 2px solid var(--border); }
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-}
-.proj-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  transition: border-color 0.18s;
-  overflow: hidden;
-}
-.proj-card:hover { border-color: var(--pc, var(--y)); }
-.proj-head {
-  height: 148px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-inline: 28px;
-  border-bottom: 2px solid color-mix(in srgb, var(--pc, var(--y)) 40%, var(--border));
-  background: color-mix(in srgb, var(--pc, var(--y)) 8%, var(--surface));
-  overflow: hidden;
-}
-.proj-emoji { font-size: 3rem; position: relative; z-index: 1; }
-.proj-num {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 7rem;
-  font-weight: 800;
-  line-height: 1;
-  color: var(--pc, var(--y));
-  opacity: 0.18;
-  letter-spacing: -0.02em;
-}
-.proj-body { padding: 28px; }
-.proj-status {
-  display: inline-block;
-  margin-bottom: 12px;
-  padding: 4px 8px;
-  border: 1px solid color-mix(in srgb, var(--pc, var(--y)) 55%, var(--border));
-  color: var(--pc, var(--y));
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.proj-link-sep { color: var(--muted); margin-inline: 4px; }
-
-.proj-body h3 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  margin-bottom: 10px;
-}
-.proj-body p { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; }
-.proj-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-.proj-tech span {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  border: 1px solid var(--border);
-  padding: 4px 9px;
-}
-.proj-link {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--pc, var(--y));
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.18s;
-}
-.proj-link:hover { border-color: currentColor; }
-
-/* ============================
-   ACHIEVEMENTS
-============================ */
-#achievements {
-  border-top: 2px solid var(--border);
-  background: var(--surface);
-}
-.ach-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
-}
-.ach {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-left: 4px solid var(--ac, var(--y));
-  padding: 28px 24px;
-  transition: border-color 0.18s;
-}
-.ach:hover { border-color: var(--ac, var(--y)); border-left-color: var(--ac, var(--y)); }
-.ach-icon { font-size: 1.4rem; margin-bottom: 12px; }
-.ach h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ac, var(--y));
-  margin-bottom: 10px;
-}
-.ach p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-
-/* ============================
-   CONTACT
-============================ */
-#contact {
-  border-top: 2px solid var(--border);
-  background: var(--surface);
-}
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-.contact-text h2 {
-  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  line-height: 0.96;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  text-wrap: balance;
-}
-.contact-text h2 em { font-style: normal; color: var(--y); }
-.contact-text p { color: var(--muted); font-size: 1.05rem; }
-
-.contact-links { display: flex; flex-direction: column; gap: 2px; }
-.cl {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 2px solid var(--border);
-  padding: 18px 22px;
-  transition: all 0.18s;
-  cursor: pointer;
-}
-.cl:hover {
-  border-color: var(--y);
-  background: color-mix(in srgb, var(--y) 6%, var(--card));
-  color: var(--y);
-}
-.cl-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-.cl-sub {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin-top: 3px;
-  user-select: all;
-  font-family: 'Barlow', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-}
-.cl-arrow { color: var(--y); font-size: 1.1rem; flex-shrink: 0; }
-
-.about-text p,
-.hero-desc,
-.sh p,
-.ach p,
-.proj-body p,
-.tl-list li,
-.contact-text p {
-   font-weight: 500;
-}
-
-/* ============================
-   FOOTER
-============================ */
-footer {
-  border-top: 2px solid var(--border);
-  padding-block: 24px;
-  text-align: center;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  background: var(--bg);
-}
-
-/* ============================
-   REVEAL ANIMATION
-============================ */
-@media (prefers-reduced-motion: no-preference) {
-  .rev { transition: opacity 0.55s ease, transform 0.55s ease; }
-  .rev.pre { opacity: 0; transform: translateY(20px); }
-}
-
-/* ============================
-   RESPONSIVE
-============================ */
-@media (max-width: 900px) {
-  .skills-grid, .ach-grid { grid-template-columns: 1fr 1fr; }
-  .about-grid { grid-template-columns: 1fr; gap: 48px; }
-  .academic-grid { grid-template-columns: 1fr; }
-  .academic-card.wide { grid-column: auto; }
-  .academic-metrics { grid-template-columns: 1fr 1fr 1fr; }
-  .tl-item { grid-template-columns: 1fr; gap: 10px; }
-  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-geo { display: none; }
-}
-@media (max-width: 620px) {
-  section { padding-block: 72px; }
-  .menu-btn { display: flex; }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 64px; left: 0;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
-    padding: 24px 5%;
-    gap: 20px;
-    z-index: 99;
-  }
-  .nav-links.open { display: flex; }
-  .proj-grid, .skills-grid, .ach-grid { grid-template-columns: 1fr; }
-  .academic-metrics { grid-template-columns: 1fr; }
-  .academic-card { padding: 24px; }
-  .stats { grid-template-columns: 1fr 1fr; }
-  .hero h1 { font-size: 3.2rem; }
-}
-</style>
-
-<!-- NAV -->
-<header>
-  <nav class="wrap">
-    <a href="#home" class="logo">Oliver<em>Dunn</em>.</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#academics">Academics</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-
-<!-- HERO -->
-<section class="hero" id="home">
-
-  <!-- Bauhaus geometric composition -->
-  <svg class="hero-geo" viewBox="0 0 500 500" fill="none" aria-hidden="true">
-    <rect x="70" y="70" width="360" height="360" class="geo-sq" opacity="0.1"/>
-    <rect x="115" y="115" width="270" height="270" class="geo-sq" opacity="0.07"/>
-    <circle cx="250" cy="250" r="165" class="geo-circ" opacity="0.08"/>
-    <circle cx="250" cy="250" r="90"  class="geo-circ2" opacity="0.07"/>
-    <line x1="0"   y1="250" x2="500" y2="250" class="geo-rule" opacity="0.06"/>
-    <line x1="250" y1="0"   x2="250" y2="500" class="geo-rule" opacity="0.06"/>
-    <line x1="0"   y1="0"   x2="500" y2="500" class="geo-rule" opacity="0.04"/>
-    <circle cx="250" cy="250" r="7" class="geo-dot-y" opacity="0.5"/>
-    <circle cx="70"  cy="70"  r="5" class="geo-dot-y" opacity="0.3"/>
-    <circle cx="430" cy="70"  r="5" class="geo-dot-r" opacity="0.3"/>
-    <circle cx="70"  cy="430" r="5" class="geo-dot-b" opacity="0.3"/>
-    <circle cx="430" cy="430" r="5" class="geo-dot-y" opacity="0.2"/>
+  <!-- Small inline icon set: crisp, consistent line icons instead of emoji glyphs. -->
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-11-2 14"/></symbol>
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 3v18M17 3v18M3 8h4m-4 8h4m10-8h4m-4 8h4"/></symbol>
+    <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v7l-6 10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1l-6-10V3M7 16h10"/></symbol>
+    <symbol id="i-audio" viewBox="0 0 24 24"><path d="M2 10v4m4-8v12m4-15v18m4-14v10m4-13v16m4-11v6"/></symbol>
+    <symbol id="i-graduation" viewBox="0 0 24 24"><path d="m2 10 10-5 10 5-10 5-10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5m4-2v7"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="m8.2 13-1 8 4.8-2 4.8 2-1-8"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 6v-3.9a3.4 3.4 0 0 0-.9-2.7c3-.3 6.1-1.5 6.1-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13 13 0 0 0-6.9 0C5.4 1.1 4.2 1.5 4.2 1.5a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.1 6.4 6.1 6.7a3.4 3.4 0 0 0-.9 2.7V22"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M4 9v11M4 4v.01M9 20v-6a4 4 0 0 1 8 0v6m-8-11v11m8 0v-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   </svg>
 
-  <div class="hero-body">
-    <div class="wrap">
-
-      <div class="hero-badge">
-        <span class="dot-live"></span>
-        Junior Software Developer
-      </div>
-
-      <h1>
-        Oliver Dunn <br>
-        <span class="acc">Software Developer</span>
-      </h1>
-
-      <p class="hero-desc">
-        Hi, I'm Oliver, a full-stack developer, welcome to my page. I build production features used by clients worldwide, hunt down critical security vulnerabilities, and collaborate to explore creative solutions to technical problems.
-      </p>
-
-      <div class="hero-btns">
-        <a href="#projects" class="btn btn-fill">View My Work →</a>
-        <a href="https://github.com/OliverDunnDev" target="_blank" rel="noopener" class="btn btn-ghost">GitHub ↗</a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Scrolling tech ticker -->
-  <div class="ticker-rail" aria-hidden="true">
-    <div class="ticker-track">
-      <span class="ti">JavaScript <span class="ti-sep">◆</span></span>
-      <span class="ti">C# <span class="ti-sep">◆</span></span>
-      <span class="ti">Python <span class="ti-sep">◆</span></span>
-      <span class="ti">React <span class="ti-sep">◆</span></span>
-      <span class="ti">FastAPI <span class="ti-sep">◆</span></span>
-      <span class="ti">SQL <span class="ti-sep">◆</span></span>
-      <span class="ti">Qiskit <span class="ti-sep">◆</span></span>
-      <span class="ti">Unity <span class="ti-sep">◆</span></span>
-      <span class="ti">Machine Learning <span class="ti-sep">◆</span></span>
-      <span class="ti">Azure DevOps <span class="ti-sep">◆</span></span>
-      <span class="ti">.NET <span class="ti-sep">◆</span></span>
-      <span class="ti">TensorFlow <span class="ti-sep">◆</span></span>
-      <!-- duplicate for seamless loop -->
-      <span class="ti">JavaScript <span class="ti-sep">◆</span></span>
-      <span class="ti">C# <span class="ti-sep">◆</span></span>
-      <span class="ti">Python <span class="ti-sep">◆</span></span>
-      <span class="ti">React <span class="ti-sep">◆</span></span>
-      <span class="ti">FastAPI <span class="ti-sep">◆</span></span>
-      <span class="ti">SQL <span class="ti-sep">◆</span></span>
-      <span class="ti">Qiskit <span class="ti-sep">◆</span></span>
-      <span class="ti">Unity <span class="ti-sep">◆</span></span>
-      <span class="ti">Machine Learning <span class="ti-sep">◆</span></span>
-      <span class="ti">Azure DevOps <span class="ti-sep">◆</span></span>
-      <span class="ti">.NET <span class="ti-sep">◆</span></span>
-      <span class="ti">TensorFlow <span class="ti-sep">◆</span></span>
-    </div>
-  </div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">01 — About</span>
-      <h2>Developer. Researcher.<br>Designer.</h2>
-      <p>Building production software, publishing ML research and always explorign new tools and systems in the ever-changning development landscape.</p>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-text">
-        <p>I'm a <strong>First Class Computer Science graduate</strong> currently building production software for universities across the globe. My current role involves shipping features for a platform used by hundreds of institutions worldwide.</p>
-        <p>Day-to-day I work across the full stack: <strong>JavaScript frontends, Uniface backend development, SQL, API integrations</strong> as well as testing, code reviews and security work. I use Git and Azure DevOps to manage branches, backports and release workflows.</p>
-        <p>Outside of work, I explore the stranger corners of tech such as <strong>quantum machine learning, generative art, XR experiences</strong> and creative coding using animation-based libraries for java and javascript.</p>
-        <p>I enjoy investigating <strong>new tools and techniques</strong> to solve problems.</p>
-      </div>
-
-      <div class="stats">
-        <div class="stat rev" style="--sc: var(--y)">
-          <div class="stat-n">1st</div>
-          <div class="stat-l">Class CS Degree</div>
-        </div>
-        <div class="stat rev" style="--sc: var(--y)">
-          <div class="stat-n">78%</div>
-          <div class="stat-l">University Average</div>
-        </div>
-        <div class="stat rev" style="--sc: var(--r)">
-          <div class="stat-n">24</div>
-          <div class="stat-l">Critical Security Flaws Resolved in a Two Week time period</div>
-        </div>
-        <div class="stat rev" style="--sc: var(--b)">
-          <div class="stat-n">2025</div>
-          <div class="stat-l">Published ML Research</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ACADEMICS & RESEARCH -->
-<section id="academics">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">02 — Academics &amp; Research</span>
-      <h2>The academic foundation<br>behind the work.</h2>
-      <p>A strong computer science degree, a completed research project, and practical experience assessing technical risks.</p>
-    </div>
-
-    <div class="academic-grid">
-      <article class="academic-card rev" style="--sc: var(--y)">
-        <span class="academic-kicker">Degree · 2022–2025</span>
-        <h3>BSc (Hons) Computer Science</h3>
-        <p><strong>University of Hull</strong></p>
-        <p>Graduated with First Class Honours and a 78% overall average. Received the Dean’s Prize for academic excellence.</p>
-        <div class="academic-metrics">
-          <div class="academic-metric">
-            <strong>1st</strong>
-            <span>Degree classification</span>
-          </div>
-          <div class="academic-metric">
-            <strong>78%</strong>
-            <span>Overall average</span>
-          </div>
-          <div class="academic-metric">
-            <strong>100%</strong>
-            <span>Dissertation report</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="academic-card rev" style="--sc: var(--b)">
-        <span class="academic-kicker">Published undergraduate research</span>
-        <h3>Q-SafeML</h3>
-        <p><strong>Q-SafeML: Safety Assessment of Quantum Machine Learning via Quantum Distance Metrics</strong></p>
-        <p>My dissertation investigated how distance-based measures can help assess the behaviour of quantum machine-learning classifiers. The work brought together Python, Qiskit and machine-learning methods, and developed my experience in experimental research, analysing model behaviour and communicating technical findings.</p>
-        <a href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener" class="academic-link">Read the paper ↗</a>
-      </article>
-
-      <article class="academic-card rev" style="--sc: var(--r)">
-        <span class="academic-kicker">Research preparation</span>
-        <h3>From question to evidence</h3>
-        <p>The Q-SafeML project gave me experience taking a research question through implementation, experimentation, analysis and written evaluation. It also taught me to think carefully about what a metric can establish, where its limitations lie, and how conclusions depend on the evaluation setup.</p>
-        <ul class="academic-list">
-          <li>Python-based implementation and experimentation.</li>
-          <li>Machine learning and quantum computing with Qiskit.</li>
-          <li>Assessment of classifier behaviour using distance-based measures.</li>
-          <li>Research writing, interpretation of results and discussion of limitations.</li>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#home">OLIVER<span>.</span>DUNN</a>
+      <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-      </article>
-
-      <article class="academic-card rev" style="--sc: var(--g)">
-        <span class="academic-kicker">Technical foundations</span>
-        <h3>Skills relevant to AI safety</h3>
-        <p>My degree and development work provide a practical foundation for empirical research into AI systems.</p>
-        <ul class="academic-list">
-          <li><strong>Machine learning:</strong> model evaluation, neural networks, generative models and the Python ML ecosystem.</li>
-          <li><strong>Software engineering:</strong> building reproducible tools, testing code, debugging failures and working with version control.</li>
-          <li><strong>Security mindset:</strong> investigating vulnerabilities and considering how systems fail in real deployments.</li>
-          <li><strong>Research interests:</strong> AI alignment, reward hacking, deceptive behaviour and the reliability of safety evaluations.</li>
-        </ul>
-      </article>
-
-      <article class="academic-card wide rev" style="--sc: #FF8C00">
-        <span class="academic-kicker">Why I’m applying</span>
-        <h3>Building on safety-related research</h3>
-        <p>My published work concerns the assessment of quantum machine-learning systems, not frontier language-model alignment. I see it as a starting point: I have already worked on a safety-focused research question, implemented technical experiments and considered the limits of evaluation methods. I now want to apply that foundation to questions about how advanced AI systems behave under incentives, whether evaluations can reliably reveal undesirable behaviour, and how we can distinguish genuine improvements in safety from improvements that only appear in a test.</p>
-        <div class="academic-note">
-          <strong>Fit, not an unverified claim:</strong> These qualifications give me relevant preparation for a research fellowship in AI safety. The fellowship’s formal eligibility requirements and selection decision remain with Pivotal Research.
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">03 — Skills</span>
-      <h2>The full toolkit.</h2>
-      <p>Languages, frameworks and disciplines I use to ship real things.</p>
-    </div>
-
-    <div class="skills-grid">
-      <article class="skill-card rev" style="--sc: var(--y)">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Languages</h3></div>
-        <div class="skill-tags">
-          <span>JavaScript</span><span>C#</span><span>Python</span>
-          <span>SQL</span><span>HTML</span><span>CSS</span>
-          <span>Java</span><span>PHP</span>
-        </div>
-      </article>
-
-      <article class="skill-card rev" style="--sc: var(--r)">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Development</h3></div>
-        <div class="skill-tags">
-          <span>React</span><span>FastAPI</span><span>.NET</span>
-          <span>Uniface</span><span>REST APIs</span><span>AJAX</span><span>JSON</span>
-        </div>
-      </article>
-
-      <article class="skill-card rev" style="--sc: var(--b)">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Data &amp; Tools</h3></div>
-        <div class="skill-tags">
-          <span>MySQL</span><span>PostgreSQL</span><span>Git</span>
-          <span>GitHub</span><span>Azure DevOps</span><span>Postman</span><span>HeidiSQL</span>
-        </div>
-      </article>
-
-      <article class="skill-card rev" style="--sc: var(--g)">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Machine Learning</h3></div>
-        <div class="skill-tags">
-          <span>scikit-learn</span><span>TensorFlow</span><span>NumPy</span>
-          <span>pandas</span><span>Qiskit</span><span>Neural Networks</span><span>GANs</span>
-        </div>
-      </article>
-
-      <article class="skill-card rev" style="--sc: #FF8C00">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Creative Technology</h3></div>
-        <div class="skill-tags">
-          <span>Unity</span><span>Meta Quest</span><span>p5.js</span>
-          <span>Processing</span><span>Raspberry Pi</span><span>Creative Coding</span>
-        </div>
-      </article>
-
-      <article class="skill-card rev" style="--sc: #CC44FF">
-        <div class="skill-head"><div class="skill-pip"></div><h3>Engineering</h3></div>
-        <div class="skill-tags">
-          <span>Unit Testing</span><span>Code Review</span><span>Agile Scrum</span>
-          <span>Security</span><span>Version Control</span><span>Debugging</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">04 — Experience</span>
-      <h2>Where I've shipped code.</h2>
-    </div>
-
-    <div>
-      <article class="tl-item rev">
-        <div>
-          <span class="tl-date">Oct 2025 — Present</span>
-          <span class="tl-co">Tribal Group</span>
-        </div>
-        <div>
-          <h3>Junior Developer</h3>
-          <ul class="tl-list">
-            <li>Build production features for the SITS higher education platform — used by universities worldwide.</li>
-            <li>Work across JavaScript frontend development and Uniface backend functionality.</li>
-            <li>Integrate systems using JSON, AJAX and SQL.</li>
-            <li>Use Git and Azure DevOps for version control, branching, backporting and release workflows.</li>
-            <li>Conduct testing, code reviews and security assessments.</li>
-            <li>Identified and resolved <strong>24 critical security vulnerabilities</strong> across the platform within a two-week period.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="tl-item rev">
-        <div>
-          <span class="tl-date">Sep 2025 — Oct 2025</span>
-          <span class="tl-co">ProQual AB</span>
-        </div>
-        <div>
-          <h3>Graduate Programmer</h3>
-          <ul class="tl-list">
-            <li>Developed and deployed an internal IT ticketing system from scratch.</li>
-            <li>Worked across C#/.NET, FastAPI, React, Tailwind CSS and MySQL.</li>
-            <li>Built authentication and validation functionality.</li>
-            <li>Designed and maintained database structures.</li>
-            <li>Produced deployment documentation and maintained company databases using HeidiSQL.</li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">05 — Projects</span>
-      <h2>Things I've built.</h2>
-      <p>Full-stack applications, creative tools and published research, built to solve problems that interest me.</p>
-    </div>
-
-    <div class="proj-grid">
-      <article class="proj-card rev" style="--pc: #A78BFA">
-        <div class="proj-head">
-          <span class="proj-emoji" aria-hidden="true">◉</span>
-          <span class="proj-num">01</span>
-        </div>
-        <div class="proj-body">
-          <span class="proj-status">Work in progress</span>
-          <h3>Reelspin</h3>
-          <p>A film-club app for groups of friends to choose what to watch and keep track of films they've seen together. Users can create clubs, manage memberships, record viewing history and rate films. The project brings a React frontend together with a FastAPI backend and PostgreSQL database.</p>
-          <div class="proj-tech">
-            <span>React</span><span>Vite</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span>
-          </div>
-          <a href="https://oliverdunndev.github.io/reelspin/" target="_blank" rel="noopener" class="proj-link">Live Frontend ↗</a>
-          <span class="proj-link-sep"> / </span>
-          <a href="https://github.com/OliverDunnDev/reelspin" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-        </div>
-      </article>
-
-      <article class="proj-card rev" style="--pc: #FFE600">
-        <div class="proj-head">
-          <span class="proj-emoji" aria-hidden="true">▦</span>
-          <span class="proj-num">02</span>
-        </div>
-        <div class="proj-body">
-          <span class="proj-status">Work in progress</span>
-          <h3>GroupMonkey</h3>
-          <p>A monkey-themed project management tool inspired by platforms such as Azure DevOps. Teams can organise work through groups, boards, tasks and goals, with admin-configurable AI agents designed to bring external AI services into team workflows.</p>
-          <div class="proj-tech">
-            <span>React</span><span>C#</span><span>.NET</span><span>AI Integration</span>
-          </div>
-          <a href="https://oliverdunndev.github.io/groupmonkey/" target="_blank" rel="noopener" class="proj-link">Live Project ↗</a>
-          <span class="proj-link-sep"> / </span>
-          <a href="https://github.com/OliverDunnDev/groupmonkey" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-        </div>
-      </article>
-
-      <article class="proj-card rev" style="--pc: #FF443A">
-        <div class="proj-head">
-          <span class="proj-emoji" aria-hidden="true">♫</span>
-          <span class="proj-num">03</span>
-        </div>
-        <div class="proj-body">
-          <span class="proj-status">Work in progress</span>
-          <h3>JamJar</h3>
-          <p>A music collaboration platform exploring how version-control concepts could work for bands. The goal is to give musicians a shared workspace to manage song tracks and track changes as a song develops, rather than losing track of files and versions across separate conversations.</p>
-          <div class="proj-tech">
-            <span>Python</span><span>React</span><span>Music Collaboration</span><span>Version Control</span>
-          </div>
-          <a href="https://oliverdunndev.github.io/jamjar/" target="_blank" rel="noopener" class="proj-link">Live Project ↗</a>
-          <span class="proj-link-sep"> / </span>
-          <a href="https://github.com/OliverDunnDev/jamjar" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-        </div>
-      </article>
-
-      <article class="proj-card rev" style="--pc: var(--b)">
-        <div class="proj-head">
-          <span class="proj-emoji" aria-hidden="true">◈</span>
-          <span class="proj-num">04</span>
-        </div>
-        <div class="proj-body">
-          <h3>Q-SafeML</h3>
-          <p>Published undergraduate research investigating safety assessment for quantum machine-learning classifiers using statistical distance measures. The project combines quantum computing and machine-learning techniques to explore ways of monitoring classifier behaviour.</p>
-          <div class="proj-tech">
-            <span>Python</span><span>Qiskit</span><span>Machine Learning</span><span>Research</span>
-          </div>
-          <a href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener" class="proj-link">Read the Research →</a>
-        </div>
-      </article>
-
-      <article class="proj-card rev" style="--pc: #FF8C00">
-        <div class="proj-head">
-          <span class="proj-emoji" aria-hidden="true">〰</span>
-          <span class="proj-num">05</span>
-        </div>
-        <div class="proj-body">
-          <h3>ML Audio Visualiser</h3>
-          <p>A full-stack audio visualisation app that analyses uploaded music and turns audio features such as tempo, spectral content and onsets into animated visual experiences. Built to explore the intersection of audio processing, frontend interaction and generative visuals.</p>
-          <div class="proj-tech">
-            <span>React</span><span>FastAPI</span><span>Python</span><span>librosa</span>
-          </div>
-          <a href="https://mp3visualizer.vercel.app/" target="_blank" rel="noopener" class="proj-link">Try the App ↗</a>
-          <span class="proj-link-sep"> / </span>
-          <a href="https://github.com/OliverDunnDev/mp3visualizer" target="_blank" rel="noopener" class="proj-link">GitHub →</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-<section id="achievements">
-  <div class="wrap">
-    <div class="sh">
-      <span class="tag">06 — Achievements</span>
-      <h2>Beyond the code.</h2>
-    </div>
-
-    <div class="ach-grid">
-      <article class="ach rev" style="--ac: var(--y)">
-        <h3>First Class Honours</h3>
-        <p>BSc Computer Science from the University of Hull with a 78% overall average.</p>
-      </article>
-
-      <article class="ach rev" style="--ac: var(--y)">
-        <h3>Dean's Prize</h3>
-        <p>Awarded for academic excellence and outstanding research achievement during undergraduate study.</p>
-      </article>
-
-      <article class="ach rev" style="--ac: var(--b)">
-        <h3>Published Research</h3>
-        <p>Undergraduate dissertation published on arXiv exploring safety approaches for Quantum Machine Learning.</p>
-      </article>
-
-      <article class="ach rev" style="--ac: var(--r)">
-        <h3>Bebras Finalist</h3>
-        <p>Qualified for the Bebras National Coding Competition final in Oxford.</p>
-      </article>
-
-      <article class="ach rev" style="--ac: var(--g)">
-        <h3>Global Game Jam 2025</h3>
-        <p>Built a complete, playable game alongside a team of three — in 48 hours flat.</p>
-      </article>
-
-      <article class="ach rev" style="--ac: var(--r)">
-        <h3>Security Overhaul</h3>
-        <p>Identified and resolved 24 critical security vulnerabilities across the platform within two weeks.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-grid">
-      <div class="contact-text">
-        <span class="tag">07 — Contact</span>
-        <h2>Got a problem?<br><em>Let's build<br>the solution.</em></h2>
-        <p style="margin-top: 20px">Open to interesting projects, research collaborations and development opportunities. Always keen to talk.</p>
+        <a class="nav-cta" href="#contact">SAY HELLO ↗</a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
+    </nav>
+  </header>
 
-      <div class="contact-links">
-        <a href="mailto:oliverdunndev@gmail.com" class="cl">
-          <div>
-            <div class="cl-label">Email Me</div>
-            <div class="cl-sub">oliverdunndev@gmail.com</div>
-          </div>
-          <span class="cl-arrow">→</span>
-        </a>
-        <a href="https://www.linkedin.com/in/oliver-dunn-a404a4251/" target="_blank" rel="noopener" class="cl">
-          <div class="cl-label">LinkedIn</div>
-          <span class="cl-arrow">↗</span>
-        </a>
-        <a href="https://github.com/OliverDunnDev" target="_blank" rel="noopener" class="cl">
-          <div class="cl-label">GitHub</div>
-          <span class="cl-arrow">↗</span>
-        </a>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="wrap hero-inner">
+        <div class="hero-top">
+          <span class="eyebrow">Software / Data / Creative Technology</span>
+          <span class="availability">Open to new opportunities</span>
+        </div>
+        <h1>Building useful<br>things with <span>code.</span></h1>
+        <p class="hero-copy">I'm Oliver, a software developer with a First Class Computer Science degree and professional experience building and maintaining enterprise applications. I like getting into the detail: understanding a system, finding the awkward problem and making the fix hold.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">Explore selected work <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+          <a class="button" href="https://github.com/OliverDunnDev" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon"><use href="#i-github"/></svg></a>
+          <a class="button" href="mailto:oliverdunndev@gmail.com">Get in touch <svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+        </div>
+        <div class="hero-note">
+          <span><svg class="icon"><use href="#i-code"/></svg> Full-stack engineering</span>
+          <span><svg class="icon"><use href="#i-database"/></svg> Python &amp; SQL</span>
+          <span><svg class="icon"><use href="#i-flask"/></svg> Published ML research</span>
+        </div>
       </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="eyebrow">01 / About</span><h2>Curious by default.<br>Practical by design.</h2></div>
+          <p class="section-intro">I move between software engineering, data and research. The common thread is working out how things behave, then building something reliable around that understanding.</p>
+        </div>
+        <div class="about-layout">
+          <div class="about-copy">
+            <p>I graduated from the <strong>University of Hull with First Class Honours</strong> in Computer Science. My first professional engineering role was at Tribal Group, working on SITS, an established higher-education platform used by universities internationally.</p>
+            <p>That meant working across JavaScript, Uniface and SQL, tracing issues through unfamiliar application layers, delivering features and dealing with the realities of maintaining long-lived software. One of my larger pieces of work involved independently resolving <strong>86 of 123 identified security items in two weeks</strong>.</p>
+            <p>Alongside engineering, I've worked on Python data projects and published undergraduate research into safety assessment for quantum machine-learning classifiers. Away from the conventional stack, I enjoy creative coding, audio and film-related projects.</p>
+            <div class="skills-line" aria-label="Core technologies">
+              <span class="skill">Python</span><span class="skill">C#</span><span class="skill">JavaScript</span>
+              <span class="skill">SQL</span><span class="skill">React</span><span class="skill">.NET</span>
+              <span class="skill">FastAPI</span><span class="skill">PostgreSQL</span><span class="skill">pandas</span>
+              <span class="skill">Git</span><span class="skill">Azure DevOps</span>
+            </div>
+          </div>
+          <div class="fact-list">
+            <div class="fact"><span>Based in</span><strong>Hull, UK</strong></div>
+            <div class="fact"><span>Education</span><strong>First Class BSc</strong></div>
+            <div class="fact"><span>Degree average</span><strong>78%</strong></div>
+            <div class="fact"><span>Research</span><strong>Published on arXiv</strong></div>
+            <div class="fact"><span>Current focus</span><strong>Software &amp; data engineering</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="eyebrow">02 / Experience</span><h2>Where I've<br>put it to work.</h2></div>
+          <p class="section-intro">Professional experience in enterprise software, followed by hands-on work building an internal application from the ground up.</p>
+        </div>
+        <div class="timeline">
+          <article class="role">
+            <div class="role-date">OCT 2025 — OCT 2026</div>
+            <div>
+              <h3>Junior Software Engineer</h3>
+              <div class="role-company">Tribal Group · SITS / eVision</div>
+              <ul>
+                <li>Developed and maintained production features for a higher-education platform, working across JavaScript, Uniface, SQL and JSON/AJAX integrations.</li>
+                <li>Independently assessed, prioritised and resolved <strong>86 of 123 identified security items in two weeks</strong>, taking issues through investigation, implementation and verification.</li>
+                <li>Designed and implemented a recovery and rollback feature to reverse files incorrectly included in software updates.</li>
+                <li>Investigated faults across application layers, wrote and maintained unit tests, reviewed code and backported fixes to supported versions.</li>
+                <li>Used Git and Azure DevOps for branch-based development, issue tracking and controlled releases; contributed to client support discussions.</li>
+              </ul>
+              <p class="muted" style="font-size:12px;margin:14px 0 0">Role concluded following an engineering team merger and subsequent redundancy.</p>
+            </div>
+          </article>
+          <article class="role">
+            <div class="role-date">SEP 2025 — OCT 2025</div>
+            <div>
+              <h3>Graduate Programmer</h3>
+              <div class="role-company">ProQual AB</div>
+              <ul>
+                <li>Developed an internal IT ticketing application using C#, .NET, Python FastAPI, React, Tailwind CSS and MySQL.</li>
+                <li>Implemented backend services for authentication, validation and application data handling, connecting them to the React frontend through API endpoints.</li>
+                <li>Designed and maintained MySQL structures, tested the application and produced deployment documentation for internal handover.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="eyebrow">03 / Selected work</span><h2>Things I've<br>been making.</h2></div>
+          <p class="section-intro">A selection of full-stack applications, research and experiments. Less gallery, more working notebook.</p>
+        </div>
+        <div class="projects">
+          <article class="project">
+            <div class="project-top"><span class="project-icon"><svg class="icon"><use href="#i-film"/></svg></span><span class="project-index">01 / APP</span></div>
+            <h3>Reelspin</h3>
+            <p>A film-club app for groups of friends to choose what to watch and keep track of films they've seen together. Includes clubs, invitations, discovery, watchlists, viewing history and ratings.</p>
+            <div class="project-tags"><span>React</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span></div>
+            <div class="project-links"><a class="text-link" href="https://oliverdunndev.github.io/reelspin/" target="_blank" rel="noopener noreferrer">Live app <svg class="icon"><use href="#i-arrow-up-right"/></svg></a><a class="text-link" href="https://github.com/OliverDunnDev/reelspin" target="_blank" rel="noopener noreferrer">Source <svg class="icon"><use href="#i-github"/></svg></a></div>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="project-icon"><svg class="icon"><use href="#i-code"/></svg></span><span class="project-index">02 / APP</span></div>
+            <h3>GroupMonkey</h3>
+            <p>A project-management application that organises work into groups, projects and member-assigned tasks, with optional AI agents as teammates.</p>
+            <div class="project-tags"><span>.NET 10</span><span>React</span><span>TypeScript</span><span>AI integration</span></div>
+            <div class="project-links"><a class="text-link" href="https://oliverdunndev.github.io/groupmonkey/" target="_blank" rel="noopener noreferrer">Live app <svg class="icon"><use href="#i-arrow-up-right"/></svg></a><a class="text-link" href="https://github.com/OliverDunnDev/groupmonkey" target="_blank" rel="noopener noreferrer">Source <svg class="icon"><use href="#i-github"/></svg></a></div>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="project-icon"><svg class="icon"><use href="#i-music"/></svg></span><span class="project-index">03 / EXPERIMENT</span></div>
+            <h3>JamJar</h3>
+            <p>A collaboration platform exploring how version-control ideas could work for bands, giving musicians a shared place to manage song tracks and follow changes as a song develops.</p>
+            <div class="project-tags"><span>Python</span><span>React</span><span>Collaboration</span><span>Version control</span></div>
+            <div class="project-links"><a class="text-link" href="https://github.com/OliverDunnDev/jamjar" target="_blank" rel="noopener noreferrer">Source <svg class="icon"><use href="#i-github"/></svg></a></div>
+          </article>
+          <article class="project">
+            <div class="project-top"><span class="project-icon"><svg class="icon"><use href="#i-flask"/></svg></span><span class="project-index">04 / RESEARCH</span></div>
+            <h3>Q-SafeML</h3>
+            <p>Published undergraduate research exploring safety assessment for quantum machine-learning classifiers using statistical and quantum distance metrics. The dissertation report received 100%.</p>
+            <div class="project-tags"><span>Python</span><span>Qiskit</span><span>Machine learning</span><span>Research</span></div>
+            <div class="project-links"><a class="text-link" href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener noreferrer">Read the paper <svg class="icon"><use href="#i-arrow-up-right"/></svg></a></div>
+          </article>
+        </div>
+        <div class="project-more"><strong>Also:</strong> ML Audio Visualiser — a Python/FastAPI and React application that extracts audio features for interactive visualisation. <a class="text-link" href="https://github.com/OliverDunnDev/mp3visualizer" target="_blank" rel="noopener noreferrer">View source <svg class="icon"><use href="#i-arrow-up-right"/></svg></a></div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="eyebrow">04 / Education</span><h2>Grounded in<br>computer science.</h2></div>
+          <p class="section-intro">A broad technical foundation, with particular interests in software architecture, data systems and machine learning.</p>
+        </div>
+        <div class="education">
+          <div class="education-main">
+            <h3>BSc (Hons) Computer Science</h3>
+            <p>University of Hull · 2022–2025</p>
+            <p><strong class="accent">First Class Honours · 78% overall average</strong></p>
+            <p>Dean's Prize for academic excellence. Dissertation report awarded 100%.</p>
+            <p><a class="research-link" href="https://arxiv.org/abs/2509.04536" target="_blank" rel="noopener noreferrer">Q-SafeML published research <svg class="icon" style="display:inline-block;vertical-align:middle;width:14px;height:14px"><use href="#i-arrow-up-right"/></svg></a></p>
+          </div>
+          <div class="education-details">
+            <div class="education-detail"><svg class="icon"><use href="#i-check"/></svg><span>Software architecture, distributed systems, databases and web development.</span></div>
+            <div class="education-detail"><svg class="icon"><use href="#i-check"/></svg><span>Machine learning with Python, pandas, NumPy, scikit-learn and TensorFlow.</span></div>
+            <div class="education-detail"><svg class="icon"><use href="#i-check"/></svg><span>Kaggle Learn: Pandas, Intro to Machine Learning and Intro to SQL.</span></div>
+            <div class="education-detail"><svg class="icon"><use href="#i-check"/></svg><span>A Levels: Computer Science (A), ICT (A), Physics (B).</span></div>
+          </div>
+        </div>
+        <div class="achievements">
+          <span class="achievement"><svg class="icon"><use href="#i-award"/></svg> Dean's Prize</span>
+          <span class="achievement"><svg class="icon"><use href="#i-award"/></svg> Published research</span>
+          <span class="achievement"><svg class="icon"><use href="#i-award"/></svg> Bebras national finalist</span>
+          <span class="achievement"><svg class="icon"><use href="#i-award"/></svg> Global Game Jam 2025</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact">
+        <div>
+          <span class="eyebrow">05 / Contact</span>
+          <h2>Have something<br>interesting? <span>Let's talk.</span></h2>
+          <p>I'm open to software engineering and data engineering opportunities, interesting side projects and conversations about technology.</p>
+        </div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:oliverdunndev@gmail.com"><span><svg class="icon"><use href="#i-mail"/></svg>Email</span><svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+          <a class="contact-link" href="https://github.com/OliverDunnDev" target="_blank" rel="noopener noreferrer"><span><svg class="icon"><use href="#i-github"/></svg>GitHub</span><svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/oliver-dunn-a404a4251/" target="_blank" rel="noopener noreferrer"><span><svg class="icon"><use href="#i-linkedin"/></svg>LinkedIn</span><svg class="icon"><use href="#i-arrow-up-right"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Oliver Dunn</span>
+      <span>Built with care, HTML, CSS &amp; JavaScript</span>
+      <a href="#home">Back to top ↑</a>
     </div>
+  </footer>
+
+  <div id="site-error" role="alert" aria-live="polite" hidden style="position:fixed;bottom:16px;left:16px;right:16px;z-index:200;background:#1d1d1d;border:1px solid #ffe600;border-radius:6px;padding:14px 16px;color:#f3f1eb;font-size:13px">
+    Something on this page didn't load correctly. Please refresh, or <a href="mailto:oliverdunndev@gmail.com" style="color:#ffe600">let me know</a>.
+    <button type="button" id="dismiss-error" aria-label="Dismiss message" style="float:right;background:none;border:0;color:#ffe600;cursor:pointer">Dismiss</button>
   </div>
-</section>
 
-</main>
+  <script>
+    const menuButton = document.getElementById("menuBtn");
+    const nav = document.getElementById("navLinks");
+    menuButton.addEventListener("click", () => {
+      const open = nav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+    nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.setAttribute("aria-label", "Open navigation");
+    }));
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<footer>
-  <div class="wrap">
-    © <span id="yr"></span> Oliver Dunn, Built with HTML, CSS &amp; JavaScript
-  </div>
-</footer>
-
-<script>
-  // Nav
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  // Footer year
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // Scroll reveal — JS sets initial hidden state, observer reveals
-  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-    const els = document.querySelectorAll('.rev');
-    els.forEach(el => el.classList.add('pre'));
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.remove('pre');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    els.forEach(el => obs.observe(el));
-  }
-</script>
+    const errorNotice = document.getElementById("site-error");
+    const showError = () => { errorNotice.hidden = false; };
+    window.addEventListener("error", event => {
+      if (event.message || event.target !== window) showError();
+    }, true);
+    window.addEventListener("unhandledrejection", showError);
+    document.getElementById("dismiss-error").addEventListener("click", () => { errorNotice.hidden = true; });
+  </script>
+</body>
+</html>
